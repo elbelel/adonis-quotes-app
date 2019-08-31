@@ -1,0 +1,30 @@
+@layout('layouts/app')
+@section('content')
+@include('layouts/navbar')
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+                <div class="float-right">
+                    <a href="/" class="btn btn-outline-dark ">back</a>
+                </div>
+                <br>
+                
+                <div class="clear-fix"></div>
+            <form method="POST" action="{{route('store.qoute')}}">
+                {{ csrfField() }}
+                <div class="form-group">
+                    <label for="pasword">Qoutation</label>
+                    <textarea type="text" rows="5"  name='body' id="body" class="form-control" id="qoute" placeholder="write the Qoutation"></textarea>
+                </div>  
+    <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+                
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div> 
+</div>
+
+@endsection

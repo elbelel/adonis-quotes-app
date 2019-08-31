@@ -1,0 +1,46 @@
+@layout('layouts/app')
+@section('content')
+@include('layouts/navbar')
+<br>
+@loggedIn
+<div class="text-right">
+    <a href="{{route('create.qoute')}}" class="btn btn-outline-primary">Create Qoutes</a>
+</div>
+<br>
+@endloggedIn
+    <br>
+    <div>
+        @if(flashMessage('successmessage'))
+            <span class="alert alert-success p-1">{{ flashMessage('successmessage') }}</span>
+        @endif
+    </div>
+    <br>
+<div class="container">
+    <div class="row">
+            @each(qoute in qoutes)
+    
+            <div class="col-md-4 mb-4">
+                <a href="/view-qoute/{{qoute.id}}" class="w-100">
+                    <div class="card shadow-lg bg-dark text-white">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                            <p>{{qoute.body}}</p>
+                                    <footer class="blockquote-footer"><cite title="Source Title"> {{qoute.username}}</cite></footer>
+                             </blockquote>
+                             @if(auth.user.id == qoute.user_id)
+                         <div>
+                         <a  href="/edit-qoute/{{qoute.id}}" class="btn btn-primary">edit</a>
+                         <a href="/delete-qoute/{{qoute.id}}" class="btn btn-danger">delete</a>
+                        </div>
+                         @endif
+                        </div>
+                    </div>
+                </a> 
+                </div>   
+            @endeach
+            <br>
+            <br>          
+    </div>
+
+</div>
+@endsection
